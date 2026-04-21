@@ -1,0 +1,125 @@
+Objective
+Design a Java-based system to simulate an E-Commerce Order Processing System using:
+* Interface
+* OOP concepts (inheritance, polymorphism)
+* Exception handling
+
+The system should allow:
+* Creating orders (online/store)
+* Cancelling orders
+* Handling invalid order operations
+
+ 2. Interface Design
+
+1. System Overview
+ Interface: Order
+ Responsibilities
+Define common behavior for all order types.
+
+ Methods
+
+void placeOrder();
+void cancelOrder(int orderId) throws InvalidOrderException;
+
+
+
+3. Class Design
+Class 1: OnlineOrder
+ Description
+Represents orders placed through website/app.
+ Attributes
+* orderId (int)
+* productName (String)
+* amount (double)
+* deliveryAddress (String)
+* status (String)
+ Behavior
+* placeOrder() → sets status = "Placed"
+* cancelOrder() → changes status = "Cancelled"
+
+
+
+Class 2: StoreOrder
+ Description
+Represents orders placed in physical store.
+ Attributes
+* orderId
+* productName
+* amount
+* storeLocation
+* status
+ Behavior
+* placeOrder()
+* cancelOrder()
+
+
+4. Exception Design
+ Custom Exception: InvalidOrderException
+ When to Throw
+* If orderId does not exist
+* If cancelling already cancelled order
+ Example Conditions
+* orderId < 0
+* order not found
+* invalid cancellation attempt
+
+5. Functional Requirements
+ Feature 1: Place Order
+* User selects:
+    * Online Order OR Store Order
+* Enter details
+* System generates order and sets status = "Placed"
+
+ Feature 2: Cancel Order
+* User enters orderId
+* System:
+    * Checks if order exists
+    * If valid → cancel
+    * Else → throw exception
+
+ 6. Non-Functional Requirements
+* Use encapsulation (private variables + getters/setters)
+* Use constructor for initialization
+* Follow proper naming conventions
+* Maintain clean code structure
+
+ 7. Suggested Main Class Flow (Menu-Driven)
+ Menu Example
+
+1. Place Online Order
+2. Place Store Order
+3. Cancel Order
+4. Exit
+
+
+
+8. Sample Execution Flow
+
+Enter choice: 1
+Enter Order ID: 101
+Enter Product: Laptop
+Enter Amount: 50000
+Enter Address: Pune
+
+Order placed successfully
+
+Enter choice: 3
+Enter Order ID: 101
+
+Order cancelled successfully
+
+
+
+E-Commerce Order System
+Design:
+* Interface: Order
+* Classes:
+    * OnlineOrder
+    * StoreOrder
+
+Features
+* Place order
+* Cancel order
+*
+* Exception
+* Invalid order ID
