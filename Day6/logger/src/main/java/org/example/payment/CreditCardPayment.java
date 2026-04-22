@@ -7,8 +7,13 @@ public class CreditCardPayment implements Payment{
 
     Logger logger = LogManager.getLogger(CreditCardPayment.class);
     @Override
-    public void pay(){
-        logger.info("pay method from CreditCardPayment is");
+    public void pay( double number){
+        if(Payment.validateAmout(number)){
+            logger.info(number+ " has been paid sucessfully");
+        }else
+            logger.error("Invalid amount. Payment failed.");{
+
+        }
     }
 
 
