@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -43,7 +45,27 @@ public class Main {
         }
 
 
-
-
+        try {
+            FileOutputStream out = new FileOutputStream("employee_data.xlsx");
+            workbook.write(out);
+            out.close();
+            System.out.println("written successfully on disk.");
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 }
