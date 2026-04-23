@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="studentbean" class="org.training.example.Student">
+        <property name="name" value="Harsh rode"></property>
+        <property name="age" value="23"></property>
+        <property name="avg_marks" value="56.78"></property>
+
+<!--        <constructor-arg value="Harsh rode" type="String"></constructor-arg> &lt;!&ndash; constructor injection&ndash;&gt;-->
+<!--        <constructor-arg value="23" type="int"></constructor-arg>-->
+<!--        <constructor-arg value="56.78" type="double"></constructor-arg>-->
+        <property name="subjects">
+            <list>
+                <value>java</value>
+                <value>python</value>
+                <value>c++</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+    <bean id="employeebean" class="org.training.example.Employee">
+        <property name="empid" value="102"></property>
+        <property name="name" value="tushar"></property>
+        <property name="salary" value="300000"></property>
+        <property name="phoneno" value="4162563250"></property>
+        <property name="designation" value="xyz"></property>
+
+
+        <property name="address">
+            <list>
+                <value>kolhapur</value>
+                <value>pune</value>
+            </list>
+        </property>
+        <property name="technologies">
+            <list>
+                <value>java</value>
+                <value>python</value>
+                <value>c++</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- another example of constructor injection with multiple arguments -->
+
+
+
+    <bean id="teacherbean" class="org.training.example.Teacher">
+        <!--        <property name="name" value="Harsh rode"></property> // setter injection-->
+        <constructor-arg value="sb madake" type="String"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="java" type="String"></constructor-arg>
+        <constructor-arg value="2020202020" type="long"></constructor-arg>
+        <constructor-arg value="10th" type="String"></constructor-arg>
+    </bean>
+
+
+    <bean id="p1" class="org.training.example.employeeManagment.Projects">
+        <!--        <property name="name" value="Harsh rode"></property> // setter injection-->
+        <constructor-arg value="10001" type="int"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="Ecommerce" type="String"></constructor-arg>
+        <constructor-arg value="ABC corp" type="String"></constructor-arg>
+    </bean>
+
+    <bean id="p2" class="org.training.example.employeeManagment.Projects">
+        <!--        <property name="name" value="Harsh rode"></property> // setter injection-->
+        <constructor-arg value="10002" type="int"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="banking" type="String"></constructor-arg>
+        <constructor-arg value="HDFC bank" type="String"></constructor-arg>
+    </bean>
+
+    <bean id="p3" class="org.training.example.employeeManagment.Projects">
+        <constructor-arg value="10003" type="int"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="AI projects" type="String"></constructor-arg>
+        <constructor-arg value="TCS" type="String"></constructor-arg>
+    </bean>
+
+    <bean id="c1" class="org.training.example.employeeManagment.Certification">
+        <constructor-arg value="1" type="int"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="Aws" type="String"></constructor-arg>
+    </bean>
+
+    <bean id="c2" class="org.training.example.employeeManagment.Certification">
+        <constructor-arg value="2" type="int"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="react" type="String"></constructor-arg>
+    </bean>
+
+    <bean id="paybean" class="org.training.example.employeeManagment.PaySlip">
+        <constructor-arg value="may" type="String"></constructor-arg> <!-- constructor injection-->
+        <constructor-arg value="80000" type="String"></constructor-arg>
+    </bean>
+
+
+    <bean id="empBean" class="org.training.example.employeeManagment.Employee">
+        <property name="empid" value="101"></property>
+        <property name="name" value="anish patil"></property>
+        <property name="salary" value="54000"></property>
+
+        <property name="projects" >
+            <list>
+                <ref bean="p1"></ref>
+                <ref bean="p2"></ref>
+                <ref bean="p3"></ref>
+            </list>
+        </property>
+
+        <property name="certificates" >
+            <list>
+                <ref bean="c1"></ref>
+                <ref bean="c2"></ref>
+            </list>
+        </property>
+
+        <property name="payslip" ref="paybean" >
+
+        </property>
+
+    </bean>
+
+
+
+
+    <bean id="b"  class="org.training.example.autoWiring.B">
+    </bean>
+
+    <bean id="a" class="org.training.example.autoWiring.A" autowire="byName">
+    </bean>
+
+
+</beans>
