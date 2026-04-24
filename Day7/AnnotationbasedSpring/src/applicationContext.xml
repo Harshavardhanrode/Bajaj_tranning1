@@ -21,16 +21,24 @@
 
 
     <!--    // using autowired annotation-->
-    <bean id="department" class="com.training.org.model.Department">
-        <constructor-arg value="100" type="int"></constructor-arg>
-        <constructor-arg value="IT" type="String"></constructor-arg>
-        <constructor-arg value="Pune" type="String"></constructor-arg>
+<!--    <bean id="department" class="com.training.org.model.Department">-->
+<!--        <constructor-arg value="100" type="int"></constructor-arg>-->
+<!--        <constructor-arg value="IT" type="String"></constructor-arg>-->
+<!--        <constructor-arg value="Pune" type="String"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--    <bean  id="empBean" class="com.training.org.model.Employee">-->
+<!--        <property name="empId" value="1001"></property>-->
+<!--        <property name="name" value="Anand"></property>-->
+
+<!--    </bean>-->
+
+
+<!--   // using autowired annotation with constructor-->
+    <bean id="carBean" class="com.training.org.model.Car">
     </bean>
 
-    <bean  id="empBean" class="com.training.org.model.Employee">
-        <property name="empId" value="1001"></property>
-        <property name="name" value="Anand"></property>
-
+    <bean id="engine" class="com.training.org.model.Engine">
     </bean>
 
 
