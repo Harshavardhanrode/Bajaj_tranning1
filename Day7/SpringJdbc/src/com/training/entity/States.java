@@ -6,6 +6,16 @@ public class States {
     private long statePopulation;
     private String capital;
 
+    @Override
+    public String toString() {
+        return "States{" +
+                "stateCode=" + stateCode +
+                ", stateName='" + stateName + '\'' +
+                ", statePopulation=" + statePopulation +
+                ", capital='" + capital + '\'' +
+                '}';
+    }
+
     public States(int stateCode, String stateName, long statePopulation, String capital) {
         this.stateCode = stateCode;
         this.stateName = stateName;
