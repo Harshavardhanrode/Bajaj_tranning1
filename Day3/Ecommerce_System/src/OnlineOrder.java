@@ -1,6 +1,7 @@
 public class OnlineOrder implements Order{
 
     private int orderId;
+    private String productName;
     private double amount;
     private String deliveryAddress;
     private String status;
@@ -8,8 +9,9 @@ public class OnlineOrder implements Order{
     public OnlineOrder() {
     }
 
-    public OnlineOrder(int orderId, double amount, String deliveryAddress, String status) {
+    public OnlineOrder(int orderId, String productName, double amount, String deliveryAddress, String status) {
         this.orderId = orderId;
+        this.productName = productName;
         this.amount = amount;
         this.deliveryAddress = deliveryAddress;
         this.status = status;
@@ -21,6 +23,14 @@ public class OnlineOrder implements Order{
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public double getAmount() {
@@ -49,12 +59,16 @@ public class OnlineOrder implements Order{
 
     @Override
     public void placeOrder() {
-
+        this.status = "Placed";
     }
 
     @Override
     public void cancelOrder(int orderId) throws InvalidOrderException {
-
+        if (this.orderId == orderId) {
+            this.status = "Cancelled";
+        } else {
+            throw new InvalidOrderException();
+        }
     }
 
 //    orderId (int)
