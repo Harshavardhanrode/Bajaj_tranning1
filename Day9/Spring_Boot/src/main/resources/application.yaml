@@ -1,0 +1,29 @@
+#spring:
+#  application:
+#     name: myspringbootApp
+#
+#product:
+#    title: myproduct
+#    version: 2.5
+#
+#app:
+#    name: Myapp
+#    version: 1.1
+#    author : sbm
+
+
+
+
+#spring.application.name=Spring_Boot
+#product.title = my product
+#product.version = 2.5
+#
+#
+#
+#app.name = MySpringBootApp
+#app.version = 9.0
+#app.author = harsh
+#
+#
+#app.file.upload-dir=/uploads
+#app.file.max-size=10MB
