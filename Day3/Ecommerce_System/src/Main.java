@@ -5,7 +5,7 @@ public class Main {
     public static  void main(String[] args){
 
         ArrayList<OnlineOrder> onlineOrderList = new ArrayList<OnlineOrder>();
-        ArrayList<StroreOrder> storeOrderList = new ArrayList<StroreOrder>();
+        ArrayList<StoreOrder> storeOrderList = new ArrayList<StoreOrder>();
         int choice=1;
         Scanner sc = new Scanner(System.in);
         while(choice !=4){
@@ -22,14 +22,15 @@ public class Main {
                     sc.nextLine();
                     System.out.println("Enter Product name");
                     String name = sc.nextLine();
-                    sc.nextLine();
                     System.out.println("Enter Order Amount");
                     double amount = sc.nextDouble();
                     sc.nextLine();
                     System.out.println("Enter Address");
                     String address = sc.nextLine();
 
-                    onlineOrderList.add(new OnlineOrder(order,amount,address,"Placed"));
+                    OnlineOrder o = new OnlineOrder(order, name, amount, address, "Placed");
+                    o.placeOrder();
+                    onlineOrderList.add(o);
 
                     break;
                 }
@@ -40,24 +41,50 @@ public class Main {
                     sc.nextLine();
                     System.out.println("Enter Product name");
                     String name = sc.nextLine();
-                    sc.nextLine();
                     System.out.println("Enter Order Amount");
                     double amount = sc.nextDouble();
                     sc.nextLine();
                     System.out.println("Enter Address");
                     String Location = sc.nextLine();
-                    storeOrderList.add(new StroreOrder(order,amount,Location,"Cancelled"));
+                    StoreOrder s = new StoreOrder(order, name, amount, Location, "Placed");
+                    s.placeOrder();
+                    storeOrderList.add(s);
 
                     break;
                 }
                 case 3:{
-//                    System.out.println("Enter OrderId");
-//                    int orderid = sc.nextInt();
-//                    for (Order o : orderArrayList){
-//                        if(o instanceof OnlineOrder){
-//                            if()
-//                        }
-//                    }
+                    System.out.println("Enter OrderId");
+                    int orderid = sc.nextInt();
+                    boolean found = false;
+                    for (OnlineOrder o : onlineOrderList){
+                        if(o.getOrderId() == orderid){
+                            try {
+                                o.cancelOrder(orderid);
+                                System.out.println("Order cancelled successfully.");
+                            } catch (InvalidOrderException e) {
+                                System.out.println("Error cancelling order.");
+                            }
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        for (StoreOrder s : storeOrderList){
+                            if(s.getOrderId() == orderid){
+                                try {
+                                    s.cancelOrder(orderid);
+                                    System.out.println("Order cancelled successfully.");
+                                } catch (InvalidOrderException e) {
+                                    System.out.println("Error cancelling order.");
+                                }
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Order not found.");
+                    }
 
                     break;
                 }

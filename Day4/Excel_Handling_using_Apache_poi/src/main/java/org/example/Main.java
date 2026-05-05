@@ -3,14 +3,14 @@ package org.example;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -58,18 +58,73 @@ public class Main {
 
         */
 
+        // Code to read data from employee_data.xlsx
+
+        try{
+
+                Workbook wb = new XSSFWorkbook();
+                XSSFSheet sheet = (XSSFSheet) wb.createSheet("Employee_Data");
+                Scanner sc = new Scanner(System.in);
+
+                String arr[] = {"customerId", "product name", "price", "quantity", "total"};
+
+                Row row = sheet.createRow(0);
+                for (int i = 0; i < arr.length; i++) {
+                    Cell cell = row.createCell(i);
+                    cell.setCellValue(arr[i]);
+                }
+                System.out.println("Enter the row count / entry count to fill the data:");
+
+                    int rowCount = sc.nextInt();
+                    System.out.println("fill the data as per number ");
+                    for (int i = 1; i <= rowCount; i++) {
+                        Row r = sheet.createRow(i);
+                        for (int j = 0; j < arr.length; j++) {
+                            Cell cell = r.createCell(j);
+                            if (j == 4) {
+                                cell.setCellFormula("C" + (i + 1) + "*D" + (i + 1));
+                                continue;
+                            }
+                            System.out.println("Enter :" + arr[j]);
+                            cell.setCellValue(sc.next());
+
+                        }
+                    }
+                        FileOutputStream out = new FileOutputStream("customer_data.xlsx");
+                        wb.write(out);
+                        out.close();
+                        System.out.println("written successfully on disk.");
+        }catch(Exception e){
+            e.printStackTrace();
+            }
 
 
 
+        /*
+        try {
+            FileInputStream fis = new FileInputStream("employee_data.xlsx");
+            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+            XSSFSheet sheet = workbook.getSheetAt(0); // Get the first sheet
 
+            DataFormatter formatter = new DataFormatter();
 
+            // Iterate through each row
+            for (Row row : sheet) {
+                // Iterate through each cell in the row
+                for (Cell cell : row) {
+                    String cellValue = formatter.formatCellValue(cell);
+                    System.out.print(cellValue + "\t");
+                }
+                System.out.println(); // New line after each row
+            }
 
+            workbook.close();
+            fis.close();
+            System.out.println("Data read successfully from employee_data.xlsx");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
 
-
-
-
-
-
-
+        }
     }
-}
