@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container d-flex" style="background-color: aqua;">
+        <div class="col-md-6">
+            <h1>Registration Form</h1>
+            <form id="registrationForm" action="http://localhost:3000/data" method="POST">
+                <table border="1">
+                    <tr>
+                        <td>Enter Username</td>
+                        <td><input type="text" name="username" id="name" placeholder="Username"></td>
+                    </tr>
+                    <tr>
+                        <td>Enter password</td>
+                        <td><input type="password" name="password" id="password" placeholder="Password"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Register" onclick="validateForm()"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+</html>
