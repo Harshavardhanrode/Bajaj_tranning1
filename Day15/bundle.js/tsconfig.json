@@ -1,0 +1,10 @@
+{
+  
+  "compilerOptions": {
+   "target": "es6",
+    "rootDir": "./src",
+    "outFile": "dist/bundle.js",
+    "strict": true
+  },
+  "include": ["src/**/*", "*.ts"]
+}
