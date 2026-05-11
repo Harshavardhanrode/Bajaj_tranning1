@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>PIPE example</h1>
+    <h1>{{ title() }}</h1>
+    <fieldset>
+      <legend>Currency Examples</legend>
+      <p ngNonBindable>{{ 1234.56 | currency: 'CAD' }}</p>
+      <p>{{ 1234.56 | currency: 'CAD' }}</p>
+
+      <p ngNonBindable>{{ 1234.56 | currency: 'CAD' : 'code' }}</p>
+      <p>{{ 1234.56 | currency: 'CAD' : 'code' }}</p>
+
+      <p ngNonBindable>{{ 1234.56 | currency: 'CAD' : 'symbol' }}</p>
+      <p>{{ 1234.56 | currency: 'CAD' : 'symbol' }}</p>
+
+      <p ngNonBindable>{{ 1234.56 | currency: 'CAD' : 'symbol-narrow' }}</p>
+      <p>{{ 1234.56 | currency: 'CAD' : 'symbol-narrow' }}</p>
+
+
+      <br />
+      <h2>{{ today | date:'dd/MM/yyyy' }}</h2>
+      <h2>{{ today | date:'shortDate' }}</h2>
+      <h2>{{ today | date:'mediumDate' }}</h2>
+      <h2>{{ today | date:'longDate' }}</h2>
+     
+    </fieldset>
+
+
+    <fieldset>
+
+  <legend>String Pipe Examples</legend>
+
+  
+  <p ngNonBindable>{{ name | uppercase }}</p>
+  <p>{{ name | uppercase }}</p>
+
+  <br>
+
+ 
+  <p ngNonBindable>{{ name | lowercase }}</p>
+  <p>{{ name | lowercase }}</p>
+
+  <br>
+
+ 
+  <p ngNonBindable>{{ fullName | titlecase }}</p>
+  <p>{{ fullName | titlecase }}</p>
+
+  <br>
+
+  
+  <p ngNonBindable>{{ name | slice:0:3 }}</p>
+  <p>{{ name | slice:0:3 }}</p>
+
+  <br>
+
+ 
+  <p ngNonBindable>{{ name | slice:2:5 }}</p>
+  <p>{{ name | slice:2:5 }}</p>
+
+  <br>
+
+ 
+  <p ngNonBindable>{{ student | json }}</p>
+  <p>{{ student | json }}</p>
+
+  <p ngNonBindable>{{ json_Obj | json }}</p>
+  <p>{{ json_Obj | json }}</p>
+
+  <p ngNonBindable> {{ array | slice:2:5 }}</p>
+  <p>{{ array | slice:2:5 }}</p>
+
+  <p ngNonBindable> {{ array | slice:1:3 }}</p>
+  <p>{{ array | slice:1:3 }}</p>
+
+  <p ngNonBindable> {{ array | slice:3 }}</p>
+  <p>{{ array | slice:3 }}</p>
+
+
+  <!-- <p ngNonBindable> {{ price | inCurrency }}</p> -->
+ 
+
+
+ 
+</fieldset>
+<fieldset>
+      <p>{{ price | inCurrency}}</p>
+
+
+      <p ngNonBindable>{{ price | evenodd}}</p>
+       <p >{{ price | evenodd}}</p>
+
+
+       <p ngNonBindable>{{ '2026-05-01' | datediff:'2026-05-08' }}</p>
+       <p>{{ '2026-05-01' | datediff:'2026-05-08' }}</p>
+
+
+       <br />
+
+
+
+       <p>json to table data using pipe</p>
+       <table border="1">
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+            <tr *ngFor="let item of student1 | jsonToTable">
+              <td>{{ item[0] }}</td>
+              <td>{{ item[1] }}</td>
+            </tr>
+</table>
+</fieldset>  
+</body>
+</html>
