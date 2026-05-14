@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Create Your Account</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .strength-indicator {
+            height: 100%;
+            width: 0%;
+            background: #ff6b6b;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .strength-indicator.weak {
+            width: 33.33%;
+            background: #ff6b6b;
+        }
+
+        .strength-indicator.medium {
+            width: 66.66%;
+            background: #ffa500;
+        }
+
+        .strength-indicator.strong {
+            width: 100%;
+            background: #51cf66;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .checkbox-group a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Create Account</h1>
+            <p>Join us today and get started</p>
+        </div>
+
+        <form id="signupForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="John"
+                        required
+                    />
+                    <div class="error" id="firstNameError">First name is required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Doe"
+                        required
+                    />
+                    <div class="error" id="lastNameError">Last name is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="john@example.com"
+                    required
+                />
+                <div class="error" id="emailError">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+1 (555) 000-0000"
+                />
+                <div class="error" id="phoneError">Please enter a valid phone number</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                />
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-indicator" id="strengthIndicator"></div>
+                    </div>
+                    <span id="strengthText" style="color: #999; font-size: 12px;">Password strength</span>
+                </div>
+                <div class="error" id="passwordError">Password must be at least 8 characters</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Re-enter your password"
+                    required
+                />
+                <div class="error" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="">Select a country</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="in">India</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    required
+                />
+                <label for="terms">
+                    I agree to the <a href="#terms">Terms & Conditions</a> and
+                    <a href="#privacy">Privacy Policy</a> *
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <input
+                    type="checkbox"
+                    id="newsletter"
+                    name="newsletter"
+                />
+                <label for="newsletter">
+                    Subscribe to our newsletter for updates and offers
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Account</button>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const passwordInput = document.getElementById('password');
+        const strengthIndicator = document.getElementById('strengthIndicator');
+        const strengthText = document.getElementById('strengthText');
+
+        // Password strength checker
+        passwordInput.addEventListener('input', function () {
+            const password = this.value;
+            let strength = 0;
+
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+            strengthIndicator.className = 'strength-indicator';
+
+            if (password.length === 0) {
+                strengthText.textContent = 'Password strength';
+                strengthText.style.color = '#999';
+                strengthIndicator.className = 'strength-indicator';
+            } else if (strength < 2) {
+                strengthIndicator.classList.add('weak');
+                strengthText.textContent = '🔴 Weak';
+                strengthText.style.color = '#ff6b6b';
+            } else if (strength < 4) {
+                strengthIndicator.classList.add('medium');
+                strengthText.textContent = '🟠 Medium';
+                strengthText.style.color = '#ffa500';
+            } else {
+                strengthIndicator.classList.add('strong');
+                strengthText.textContent = '🟢 Strong';
+                strengthText.style.color = '#51cf66';
+            }
+        });
+
+        // Form validation and submission
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Reset errors
+            document.querySelectorAll('.error').forEach(el => el.classList.remove('show'));
+
+            let isValid = true;
+
+            // First Name validation
+            if (!document.getElementById('firstName').value.trim()) {
+                document.getElementById('firstNameError').classList.add('show');
+                isValid = false;
+            }
+
+            // Last Name validation
+            if (!document.getElementById('lastName').value.trim()) {
+                document.getElementById('lastNameError').classList.add('show');
+                isValid = false;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').classList.add('show');
+                isValid = false;
+            }
+
+            // Phone validation (optional but if provided must be valid)
+            const phone = document.getElementById('phone').value;
+            if (phone && !/^\+?[1-9]\d{1,14}$/.test(phone.replace(/\D/g, ''))) {
+                document.getElementById('phoneError').classList.add('show');
+                isValid = false;
+            }
+
+            // Password validation
+            const password = document.getElementById('password').value;
+            if (password.length < 8) {
+                document.getElementById('passwordError').classList.add('show');
+                isValid = false;
+            }
+
+            // Confirm Password validation
+            if (password !== document.getElementById('confirmPassword').value) {
+                document.getElementById('confirmPasswordError').classList.add('show');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Account created successfully!\n\nName: ' + document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value + '\nEmail: ' + email);
+                // Here you would typically send the data to a server
+                form.reset();
+                strengthIndicator.className = 'strength-indicator';
+                strengthText.textContent = 'Password strength';
+                strengthText.style.color = '#999';
+            }
+        });
+    </script>
+</body>
+</html>
